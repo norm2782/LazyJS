@@ -2,7 +2,7 @@
   "use strict";
 
   var take, filter, nil, sub, id, even, eq, ne, add, sub, mul, div, mod, from,
-    last, take, filter, notMultiple, notMultiple2, sieve, sieve2;
+    last, take, filter, notMultiple, notMultiple2, sieve, sieve2, fib;
 
   // setup
   function init() {
@@ -146,21 +146,43 @@
 
   // test: sieve
   function testSieve() {
-    var mainSieve, mainSieve2, d, t1, t2, evalCounter, list;
+    var mainSieve, mainSieve2, d, t1, t2, list;
 
     mainSieve = a2(take, 10, a1(sieve, a1(from, 2)));
     mainSieve2 = a2(take, 50, a2(sieve2, a1(id, notMultiple2), a1(from, 2)));
 
     // running it...
-    evalCounter = 0;
     d = new Date();
     t1 = d.getTime();
     // showList(mainSieve);
     show(a1(last, mainSieve));
     d = new Date();
     t2 = d.getTime() - t1;
-    print("<hr/>time= " + t2 + " ms" + ((evalCounter > 0) ? ", nreval= " +
-      evalCounter + ", ms/ev= " + (t2 / evalCounter) : "") + "<br/>");
+    print("<hr/>time= " + t2 + " ms<br/>");
+  }
+
+  fib = fn(function (n) {
+    var m = ev(n);
+
+    if (m < 2) {
+      return m;
+    } else {
+      return a2(add, a1(fib, m - 1), a1(fib, m - 2))
+    }
+  });
+
+  function testFib() {
+    var mainFib, d, t1, t2;
+    mainFib = a1(fib, 20);
+
+    // running it...
+    d = new Date();
+    t1 = d.getTime();
+    // showList(mainSieve);
+    show(mainFib);
+    d = new Date();
+    t2 = d.getTime() - t1;
+    print("<hr/>time= " + t2 + " ms<br/>");
   }
 
   function testMisc() {
@@ -207,9 +229,10 @@
 
   function main() {
     init();
-    testMisc();
-    tryOut();
-    testSieve();
+    // testMisc();
+    // tryOut();
+    testFib();
+    // testSieve();
   }
 
   window.testSieve = testSieve;
