@@ -2,7 +2,7 @@
   "use strict";
 
   var take, filter, nil, sub, id, even, eq, ne, add, sub, mul, div, mod, from,
-    last, list2, take, filter, notMultiple, notMultiple2, sieve, sieve2;
+    last, take, filter, notMultiple, notMultiple2, sieve, sieve2;
 
   // setup
   function init() {
@@ -101,6 +101,7 @@
   });
 
   last = fn(function (a) {
+    var list, list2;
     list = ev(a);
     switch (list[0]) {
     case 0:
@@ -146,8 +147,8 @@
   function testSieve() {
     var mainSieve, mainSieve2, d, t1, t2, evalCounter, list;
 
-    mainSieve = a2(take, 1000, a1(sieve, a1(from, 2)));
-    mainSieve2 = a2(take, 500, a2(sieve2, a1(id, notMultiple2), a1(from, 2)));
+    mainSieve = a2(take, 10, a1(sieve, a1(from, 2)));
+    mainSieve2 = a2(take, 50, a2(sieve2, a1(id, notMultiple2), a1(from, 2)));
 
     // running it...
     evalCounter = 0;
