@@ -6,6 +6,7 @@
 
   // setup
   function init() {
+    // enableTrace();
   }
 
   function print(x) {
@@ -178,7 +179,7 @@
     trace("inc2: " + inc2);
     two1 = 2;
     // var two2 = new AppN_WHNF(2);
-    two3 = new App(new LFun(0, function () { return 2; }), []);
+    two3 = new App(new LFun(function () { return 2; }), []);
     arr = [two1];
     // trace("two2: " + two2);
     trace("two3: " + two3);
@@ -206,8 +207,8 @@
 
   function main() {
     init();
-    // testMisc();
-    // tryOut();
+    testMisc();
+    tryOut();
     testSieve();
   }
 

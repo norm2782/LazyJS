@@ -1,10 +1,9 @@
 (function (window) {
   "use strict";
 
-  var traceOn, traceFn, evalCounter, nodeCounter;
+  var traceOn, evalCounter, nodeCounter;
 
   traceOn = false;
-  traceFn = console.log;
 
   evalCounter = 0;
   nodeCounter = 0;
@@ -15,7 +14,7 @@
 
   function trace(m, s) {
     if (traceOn) {
-      traceFn(m + ": " + s);
+      console.log(m + ": " + s);
     }
   }
 
