@@ -18,15 +18,23 @@
     }
   }
 
+  function evaluatable(x) {
+    return x !== undefined && x !== null && x.__eOrV__ !== undefined;
+  }
+
   function traceX(msg, x) {
-    trace(msg, typeof x + "/" + typeof x.__eOrV__ + ":" + x);
+    if (evaluatable(x)) {
+      trace(msg, typeof x + "/" + typeof x.__eOrV__ + ":" + x);
+    } else {
+      trace(msg, typeof x + ":" + x);
+    }
   }
 
   // interface to eval
   function ev(x) {
     trace("> ev", x);
 
-    if (x !== undefined && x.__eOrV__ !== undefined) {
+    if (evaluatable(x)) {
       var x_, xx, x_next;
 
       x_ = x;
@@ -46,9 +54,9 @@
 
           traceX("<< ev", x);
         }
-      } while (x !== undefined && x.__eOrV__ !== undefined);
+      } while (evaluatable(x));
 
-      while (x_.__eOrV__ !== undefined) {
+      while (evaluatable(x_)) {
         x_next = x_.__eOrV__;
         x_.__eOrV__ = x;
         x_ = x_next;
