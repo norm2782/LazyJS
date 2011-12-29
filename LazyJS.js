@@ -23,10 +23,12 @@
   }
 
   function traceX(msg, x) {
-    if (evaluatable(x)) {
-      trace(msg, typeof x + "/" + typeof x.__eOrV__ + ":" + x);
-    } else {
-      trace(msg, typeof x + ":" + x);
+    if (traceOn) {
+      if (evaluatable(x)) {
+        trace(msg, typeof x + "/" + typeof x.__eOrV__ + ":" + x);
+      } else {
+        trace(msg, typeof x + ":" + x);
+      }
     }
   }
 
